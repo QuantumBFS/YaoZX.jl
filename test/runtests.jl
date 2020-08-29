@@ -1,6 +1,6 @@
 using YaoZX
 using Test
 
-@testset "YaoZX.jl" begin
-    # Write your tests here.
+@testset "push gate" begin
+    include("push_gate.jl")
 end
