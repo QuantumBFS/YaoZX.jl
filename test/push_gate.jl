@@ -1,4 +1,4 @@
-using Yao, YaoExtensions
+using Yao
 using YaoZX
 using Test
 
@@ -17,12 +17,4 @@ using Test
 			]
 		@test operator_fidelity(decompose_zx(g), g) ≈ 1
 	end
-end
-
-@testset "qft" begin
-    c = qft_circuit(4)
-    zxd = ZXDiagram(4)
-    push_gate!(zxd, c)
-    #c2 = circuit_extraction(zxd)
-    #@test_broken operator_fidelity(c, c2) ≈ 1
 end
