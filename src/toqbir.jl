@@ -61,21 +61,34 @@ function toqbir(zxd::ZXDiagram)
     n = length(zxd._inputs)
     c = chain(n)
     for g in gate_sequence(zxd)
-        push!(c, parse_block(g))
+        gg = parse_block(g)
+        gg !== nothing && push!(c, gg)
     end
     c
 end
 
 function parse_block(g::Tuple)
     if g[1] == :X
-        put(g[2]=>Rx(g[3]*π))
+        p = g[3]
+        if p == 1
+            put(g[2]=>X)
+        elseif p != 0
+            put(g[2]=>Rx(p*π))
+        end
     elseif g[1] == :Z
-        put(g[2]=>Rz(g[3]*π))
+        p = g[3]
+        if p == 1
+            put(g[2]=>Z)
+        elseif p != 0
+            put(g[2]=>Rz(g[3]*π))
+        end
     elseif g[1] == :H
         put(g[2]=>H)
     elseif g[1] == :CZ
         control(g[2], g[3]=>Z)
     elseif g[1] == :CNOT
+        control(g[2], g[3]=>X)
+    elseif g[1] == :SWAP
         control(g[2], g[3]=>X)
     end
 end
