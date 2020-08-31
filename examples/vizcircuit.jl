@@ -3,7 +3,17 @@ using Viznet, YaoBlocks
 using YaoExtensions
 
 struct CircuitCanvas
-    occ::Matrix{Bool}
+    frontier::Vector{Int}
+end
+
+nline(c::CircuitCanvas) = length(c)
+
+function CircuitCanvas(nqubit::Int, depth::Int)
+    CircuitCanvas(nqubit, depth)
+end
+
+function frontier(c::CircuitCanvas, start, stop)
+    maximum(i->frontier[i], start:stop)
 end
 
 function Base.:>>(b::AbstractBlock, c::CircuitCanvas)
@@ -14,7 +24,7 @@ function Base.:>>(p::PutBlock{N,1}, c::CircuitCanvas)
     i = frontier(c)
     for j in p.locs
         CircuitCanvas.lattice[i, j]
-        tb >> 
+        tb >>
     end
 end
 

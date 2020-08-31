@@ -1,4 +1,4 @@
-using Yao
+using Yao, YaoExtensions
 using YaoZX
 using Test
 
