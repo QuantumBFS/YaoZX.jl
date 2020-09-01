@@ -150,9 +150,9 @@ version = "0.2.0"
 
 [[Requires]]
 deps = ["UUIDs"]
-git-tree-sha1 = "d37400976e98018ee840e0ca4f9d20baa231dc6b"
+git-tree-sha1 = "8c08d0c7812169e438a8478dae2a529377ad13f7"
 uuid = "ae029012-a4dd-5104-9daa-d747884805df"
-version = "1.0.1"
+version = "1.0.2"
 
 [[SHA]]
 uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
@@ -240,8 +240,8 @@ version = "0.11.0"
 
 [[ZXCalculus]]
 deps = ["LightGraphs", "LinearAlgebra", "SparseArrays"]
-git-tree-sha1 = "33241383446d00e6836815eb8b4427014b606b09"
+git-tree-sha1 = "721aa55b22e125b72cae5fa42cd1bbe18b26c6b6"
 repo-rev = "master"
 repo-url = "https://github.com/QuantumBFS/ZXCalculus.jl.git"
 uuid = "3525faa3-032d-4235-a8d4-8c2939a218dd"
-version = "0.1.1"
+version = "0.2.1"
