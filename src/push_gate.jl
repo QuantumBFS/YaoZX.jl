@@ -1,7 +1,3 @@
-# patch
-push_gate!(zxd::ZXDiagram, ::Val{:CNOT}, args...) = push_ctrl_gate!(zxd, Val(:CNOT), args...)
-push_gate!(zxd::ZXDiagram, ::Val{:CZ}, args...) = push_ctrl_gate!(zxd, Val(:CZ), args...)
-
 function push_gate!(zxd::ZXDiagram, c::AbstractBlock)
 	push_gate!(zxd, decompose_zx(c))
 end
