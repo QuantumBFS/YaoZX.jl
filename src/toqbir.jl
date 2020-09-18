@@ -5,9 +5,6 @@ import YaoBlocks: mat
 function toqbir(qc::QCircuit)
     n = ZXCalculus.nqubits(qc)
     c = chain(n)
-    if global_phase(qc) != 0
-        push!(c, put(1 => YaoBlocks.phase(global_phase(qc))))
-    end
     for g in gates(qc)
         gg = parse_block(g)
         gg !== nothing && push!(c, gg)
