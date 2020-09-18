@@ -8,3 +8,7 @@ end
 @testset "to qbir" begin
     include("toqbir.jl")
 end
+
+@testset "simplification" begin
+    include("simplification.jl")
+end
