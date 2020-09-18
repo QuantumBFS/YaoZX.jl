@@ -1,6 +1,15 @@
+import ZXCalculus: ZXDiagram
+
+function ZXDiagram(c::AbstractBlock)
+	zxd = ZXDiagram(nqubits(c))
+	push_gate!(zxd, c)
+	return zxd
+end
+
 function push_gate!(zxd::ZXDiagram, c::AbstractBlock)
 	push_gate!(zxd, decompose_zx(c))
 end
+
 
 # rotation blocks
 function push_gate!(zxd::ZXDiagram, c::PutBlock{N,1,RotationGate{1,T,XGate}}) where {N,T}
