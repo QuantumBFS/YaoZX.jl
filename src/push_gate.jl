@@ -1,6 +1,15 @@
+import ZXCalculus: ZXDiagram
+
+function ZXDiagram(c::AbstractBlock)
+	zxd = ZXDiagram(nqubits(c))
+	push_gate!(zxd, c)
+	return zxd
+end
+
 function push_gate!(zxd::ZXDiagram, c::AbstractBlock)
 	push_gate!(zxd, decompose_zx(c))
 end
+
 
 # rotation blocks
 function push_gate!(zxd::ZXDiagram, c::PutBlock{N,1,RotationGate{1,T,XGate}}) where {N,T}
@@ -24,10 +33,10 @@ end
 function push_gate!(zxd::ZXDiagram, c::ControlBlock{N,XGate,1}) where {N}
 	cloc = c.ctrl_locs[1]
 	if c.ctrl_config[1] == 1
-		push_gate!(zxd, Val(:CNOT), cloc, c.locs[1])
+		push_gate!(zxd, Val(:CNOT), c.locs[1], cloc)
 	else
 		push_gate!(zxd, Val(:X), cloc, 1//1)
-		push_gate!(zxd, Val(:CNOT), cloc, c.locs[1])
+		push_gate!(zxd, Val(:CNOT), c.locs[1], cloc)
 		push_gate!(zxd, Val(:X), cloc, 1//1)
 	end
 end
@@ -37,7 +46,7 @@ function push_gate!(zxd::ZXDiagram, c::ControlBlock{N,ZGate,1}) where {N}
 		push_gate!(zxd, Val(:CZ), cloc, c.locs[1])
 	else
 		push_gate!(zxd, Val(:X), cloc, 1//1)
-		push_gate!(zxd, Val(:CZ), cloc, c.locs[1])
+		push_gate!(zxd, Val(:CZ), c.locs[1], cloc)
 		push_gate!(zxd, Val(:X), cloc, 1//1)
 	end
 end
